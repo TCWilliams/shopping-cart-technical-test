@@ -35,10 +35,10 @@ function AppContent() {
             </button>
             <button
               onClick={() => setView('cart')}
-              className={`px-6 py-2.5 rounded-lg font-medium transition-all ${
+              className={`px-6 py-2.5 rounded-lg font-medium transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 border-2 ${
                 view === 'cart'
-                  ? 'bg-white text-emerald-700 shadow-md'
-                  : 'bg-emerald-600 hover:bg-emerald-500 text-white'
+                  ? 'bg-white text-emerald-800 border-emerald-700 shadow-md'
+                  : 'bg-emerald-700 hover:bg-emerald-600 text-white border-transparent'
               }`}
             >
               My Cart {cartItemCount > 0 && `(${cartItemCount})`}
