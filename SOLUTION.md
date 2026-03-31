@@ -43,6 +43,7 @@ No special environment variables or seed data are required; product data is stat
 - Add e2e tests (e.g., Playwright) for full user flows.
 - Lazy load `ProductList` and `Cart` via `React.lazy` - low value with the current mock data but worthwhile if the catalogue grows significantly.
 - Refactor to Zustand or React Query if the app grew - Context + useReducer is appropriate at this scale but would struggle with more async state.
+- Promo codes - Applied discounts are not currently persisted to `localStorage` - given more time I'd include the active promo code in the cart state that gets saved.
 
 ## Anything to flag
 
