@@ -23,9 +23,6 @@ export function ProductCard({
               <h3 className="font-bold text-lg text-gray-900">
                 {product.name}
               </h3>
-              <p className="text-sm text-emerald-600 font-medium mt-1">
-                {product.category}
-              </p>
             </div>
           </div>
           {/* Image Placeholder */}

@@ -9,7 +9,6 @@ describe('ProductCard', () => {
     name: 'Test Product',
     description: 'A great product',
     price: 1000,
-    category: 'Tools',
     stockCount: 3,
   }
 

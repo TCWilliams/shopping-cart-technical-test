@@ -1,4 +1,4 @@
-# Solution — Tim Williams
+# Solution - Tim Williams
 
 ## Running the project
 
@@ -18,21 +18,21 @@ npm run coverage    # coverage report
 
 ## Assumptions & tradeoffs
 
-**Frontend only** — as a frontend candidate I've mocked the product catalogue as static data (`src/data/products.ts`). In a full implementation this would be fetched from `/api/v1/products`. Cart operations would be managed server-side.
+**Frontend only** - as a frontend candidate I've mocked the product catalogue as static data (`src/data/products.ts`). In a full implementation this would be fetched from `/api/v1/products`. Cart operations would be managed server-side.
 
-**Cart persistence** — cart state is persisted to `localStorage` and rehydrated on load. In a production app this would live server-side.
+**Cart persistence** - cart state is persisted to `localStorage` and rehydrated on load. In a production app this would live server-side.
 
-**Prices stored in cents** — all prices are integers in cents to avoid floating point rounding errors. Formatting to dollars happens only at the display layer via a single `formatPrice` utility.
+**Prices stored in cents** - all prices are integers in cents to avoid floating point rounding errors. Formatting to dollars happens only at the display layer via a single `formatPrice` utility.
 
-**Denormalised cart items** — product data (name, price, image) is copied into the cart item at the time of adding. This means the cart reflects what the user saw when they added the item, rather than the current state of the catalogue.
+**Denormalised cart items** - product data (name, price, image) is copied into the cart item at the time of adding. This means the cart reflects what the user saw when they added the item, rather than the current state of the catalogue.
 
-**Stock Handling (Implemented)** — The cart and product list both enforce stock levels: users cannot add more items than are available in stock. The "Add to Cart" button is disabled when the cart quantity reaches the product's stock count, and cart quantity controls are capped at available stock.
+**Stock Handling (Implemented)** - The cart and product list both enforce stock levels: users cannot add more items than are available in stock. The "Add to Cart" button is disabled when the cart quantity reaches the product's stock count, and cart quantity controls are capped at available stock.
 
-**Promo Code Support (Implemented)** — The cart supports promo/discount codes. Two codes are hardcoded: `PROMO10` (10% off) and `PROMO15` (15% off). Entering a valid code applies the discount to the order summary; invalid codes show an error message.
+**Promo Code Support (Implemented)** - The cart supports promo/discount codes. Two codes are hardcoded: `PROMO10` (10% off) and `PROMO15` (15% off). Entering a valid code applies the discount to the order summary; invalid codes show an error message.
 
-**UI/UX** — The design is mobile-friendly and uses Tailwind CSS for rapid styling. Accessibility is considered (aria-labels, button roles), but not exhaustively audited due to time limitations.
+**UI/UX** - The design is mobile-friendly and uses Tailwind CSS for rapid styling. Accessibility is considered (aria-labels, button roles), but not exhaustively audited due to time limitations.
 
-**Testing** — Core logic and UI flows are covered, but not every edge case (e.g., error boundaries, accessibility violations).
+**Testing** - Core logic and UI flows are covered, but not every edge case (e.g., error boundaries, accessibility violations).
 
 ## What I'd do with more time
 
