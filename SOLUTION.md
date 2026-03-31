@@ -26,7 +26,9 @@ npm run coverage    # coverage report
 
 **Denormalised cart items** — product data (name, price, image) is copied into the cart item at the time of adding. This means the cart reflects what the user saw when they added the item, rather than the current state of the catalogue.
 
-**Stock Handling** — The cart prevents adding more items than available stock, but does not handle concurrent stock changes (e.g., multiple tabs or users).
+**Stock Handling (Implemented)** — The cart and product list both enforce stock levels: users cannot add more items than are available in stock. The "Add to Cart" button is disabled when the cart quantity reaches the product's stock count, and cart quantity controls are capped at available stock.
+
+**Promo Code Support (Implemented)** — The cart supports promo/discount codes. Two codes are hardcoded: `PROMO10` (10% off) and `PROMO15` (15% off). Entering a valid code applies the discount to the order summary; invalid codes show an error message.
 
 **UI/UX** — The design is mobile-friendly and uses Tailwind CSS for rapid styling. Accessibility is considered (aria-labels, button roles), but not exhaustively audited due to time limitations.
 
