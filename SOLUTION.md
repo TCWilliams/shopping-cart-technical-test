@@ -16,13 +16,15 @@ npm run coverage    # coverage report
 
 No special environment variables or seed data are required; product data is static in `src/data/products.ts`.
 
+## State management & cart persistence
+
+Cart state is managed with React Context and `useReducer`. The `CartProvider` wraps the app and exposes cart operations via a `useCart()` hook. Cart state is automatically saved to `localStorage` and rehydrated on load.
+
 ## Assumptions & tradeoffs
 
 **Frontend only** - as a frontend candidate I've mocked the product catalogue as static data (`src/data/products.ts`). In a full implementation this would be fetched from `/api/v1/products` and cart operations would be managed server-side.
 
 **Project structure** - features are co-located by component (`Cart/`, `ProductList/`) with shared context in `src/context/` and types centralised in `src/types.ts`.
-
-**Cart persistence** - cart state is persisted to `localStorage` and rehydrated on load.
 
 **Prices stored in cents** - all prices are integers in cents to avoid floating point rounding errors. Formatting to dollars happens only at the display layer via a single `formatPrice` utility.
 
