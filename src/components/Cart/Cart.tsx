@@ -8,7 +8,9 @@ const PROMO_CODES: { [key: string]: number } = {
   SAVE15: 0.15, // 15% discount
 }
 
-export function Cart() {
+export function Cart({
+  onContinueShopping,
+}: { onContinueShopping?: () => void } = {}) {
   const { state } = useCart()
   const { items } = state.cart
 
@@ -63,6 +65,14 @@ export function Cart() {
           <p className="text-gray-500 mt-2">
             Start shopping to add items to your cart
           </p>
+        </div>
+        <div className="mt-8 flex justify-center">
+          <button
+            className="border border-emerald-300 text-emerald-700 font-medium py-2 px-4 rounded-lg hover:bg-emerald-50 transition-colors"
+            onClick={onContinueShopping}
+          >
+            Continue Shopping
+          </button>
         </div>
       </div>
     )
@@ -162,7 +172,10 @@ export function Cart() {
             </button>
 
             {/* Continue Shopping Link - no action */}
-            <button className="w-full mt-3 border border-emerald-300 text-emerald-700 font-medium py-2 px-4 rounded-lg hover:bg-emerald-50 transition-colors">
+            <button
+              className="w-full mt-3 border border-emerald-300 text-emerald-700 font-medium py-2 px-4 rounded-lg hover:bg-emerald-50 transition-colors"
+              onClick={onContinueShopping}
+            >
               Continue Shopping
             </button>
           </div>

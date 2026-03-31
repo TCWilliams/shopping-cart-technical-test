@@ -49,7 +49,11 @@ function AppContent() {
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto py-12 px-4">
-        {view === 'products' ? <ProductList /> : <Cart />}
+        {view === 'products' ? (
+          <ProductList />
+        ) : (
+          <Cart onContinueShopping={() => setView('products')} />
+        )}
       </main>
     </div>
   )
