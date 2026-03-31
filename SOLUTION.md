@@ -30,7 +30,7 @@ No special environment variables or seed data are required; product data is stat
 
 **Stock enforcement** - enforced client-side only. In production this would also be validated server-side to prevent race conditions between concurrent sessions.
 
-**Promo codes** - validated client-side against a hardcoded map (`PROMO10`, `PROMO15`).
+**Promo codes** - validated client-side against a hardcoded map (`SAVE10`, `SAVE15`).
 
 **Testing** - focused on core logic (reducer) and critical UI flows rather than exhaustive coverage. The reducer is tested as a pure function; components are tested via user-facing behaviour rather than implementation details.
 

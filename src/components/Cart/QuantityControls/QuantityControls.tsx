@@ -16,7 +16,7 @@ export function QuantityControls({
           onClick={() =>
             handleQuantityChange(item.productId, item.quantity - 1)
           }
-          className="p-1 rounded-lg hover:bg-gray-200 transition-colors"
+          className="p-1 rounded-lg hover:bg-emerald-200 transition-colors cursor-pointer"
           aria-label="Decrease quantity"
         >
           <svg
@@ -39,11 +39,11 @@ export function QuantityControls({
             handleQuantityChange(item.productId, item.quantity + 1)
           }
           disabled={item.quantity >= maxQuantity}
-          className={
+          className={`p-1 rounded-lg ${
             item.quantity >= maxQuantity
               ? 'opacity-40 cursor-not-allowed'
-              : 'hover:bg-emerald-100'
-          }
+              : 'hover:bg-emerald-100 cursor-pointer'
+          }`}
           aria-label="Increase quantity"
         >
           <svg

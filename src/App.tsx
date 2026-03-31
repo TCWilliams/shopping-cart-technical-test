@@ -18,14 +18,14 @@ function AppContent() {
       <header className="bg-gradient-to-r from-emerald-700 to-green-600 text-white shadow-lg">
         <div className="max-w-7xl mx-auto px-4 py-8">
           <h1 className="text-4xl font-bold mb-6 tracking-tight ">
-            🌾 Farmlands Shop
+            GreenMeadows Store
           </h1>
 
           {/* Navigation */}
           <nav className="flex gap-3">
             <button
               onClick={() => setView('products')}
-              className={`px-6 py-2.5 rounded-lg font-medium transition-all ${
+              className={`px-6 py-2.5 rounded-lg font-medium transition-all cursor-pointer ${
                 view === 'products'
                   ? 'bg-white text-emerald-700 shadow-md'
                   : 'bg-emerald-600 hover:bg-emerald-500 text-white'
@@ -35,7 +35,7 @@ function AppContent() {
             </button>
             <button
               onClick={() => setView('cart')}
-              className={`px-6 py-2.5 rounded-lg font-medium transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 border-2 ${
+              className={`px-6 py-2.5 rounded-lg font-medium transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-700 border-2 cursor-pointer ${
                 view === 'cart'
                   ? 'bg-white text-emerald-800 border-emerald-700 shadow-md'
                   : 'bg-emerald-700 hover:bg-emerald-600 text-white border-transparent'

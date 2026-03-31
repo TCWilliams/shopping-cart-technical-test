@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useCart } from '@/context/cartContext'
 import { addTax } from '@/lib/utils'
 import { CartItems } from './CartItems'
@@ -7,6 +7,8 @@ const PROMO_CODES: { [key: string]: number } = {
   SAVE10: 0.1, // 10% discount
   SAVE15: 0.15, // 15% discount
 }
+
+const PROMO_STORAGE_KEY = 'farmlands_promo'
 
 export function Cart({
   onContinueShopping,
@@ -18,14 +20,49 @@ export function Cart({
   const [discount, setDiscount] = useState(0)
   const [error, setError] = useState('')
 
+  // Load promo code from localStorage on mount
+  useEffect(() => {
+    const saved = localStorage.getItem(PROMO_STORAGE_KEY)
+    if (saved) {
+      try {
+        const { code, discount: savedDiscount } = JSON.parse(saved)
+        setPromoCode(code)
+        setDiscount(savedDiscount)
+      } catch (e) {
+        // Invalid saved data, ignore
+      }
+    }
+  }, [])
+
+  // Clear promo code when cart becomes empty
+  useEffect(() => {
+    if (items.length === 0) {
+      clearPromo()
+    }
+  }, [items.length])
+
   const applyPromo = () => {
     if (PROMO_CODES[promoCode.toUpperCase()]) {
-      setDiscount(PROMO_CODES[promoCode.toUpperCase()])
+      const newDiscount = PROMO_CODES[promoCode.toUpperCase()]
+      setDiscount(newDiscount)
       setError('')
+      // Persist to localStorage
+      localStorage.setItem(
+        PROMO_STORAGE_KEY,
+        JSON.stringify({ code: promoCode, discount: newDiscount }),
+      )
     } else {
       setDiscount(0)
       setError('Invalid promo code')
+      localStorage.removeItem(PROMO_STORAGE_KEY)
     }
+  }
+
+  const clearPromo = () => {
+    setPromoCode('')
+    setDiscount(0)
+    setError('')
+    localStorage.removeItem(PROMO_STORAGE_KEY)
   }
 
   // Calculate totals
@@ -68,7 +105,7 @@ export function Cart({
         </div>
         <div className="mt-8 flex justify-center">
           <button
-            className="border border-emerald-300 text-emerald-700 font-medium py-2 px-4 rounded-lg hover:bg-emerald-50 transition-colors"
+            className="border border-emerald-300 text-emerald-700 font-medium py-2 px-4 rounded-lg hover:bg-emerald-50 transition-colors cursor-pointer"
             onClick={onContinueShopping}
           >
             Continue Shopping
@@ -129,13 +166,27 @@ export function Cart({
 
                 <button
                   onClick={applyPromo}
-                  className="bg-emerald-600 text-white px-3 py-2 rounded-lg text-sm hover:bg-emerald-700 transition-colors"
+                  className="bg-emerald-600 text-white px-3 py-2 rounded-lg text-sm hover:bg-emerald-700 transition-colors cursor-pointer"
                 >
                   Apply
                 </button>
+
+                {discount > 0 && (
+                  <button
+                    onClick={clearPromo}
+                    className="bg-gray-300 text-gray-700 px-3 py-2 rounded-lg text-sm hover:bg-gray-400 transition-colors cursor-pointer"
+                  >
+                    Clear
+                  </button>
+                )}
               </div>
 
               {error && <p className="text-sm text-red-600 mt-2">{error}</p>}
+              {discount > 0 && (
+                <p className="text-sm text-green-600 mt-2">
+                  ✓ Promo code applied ({Math.round(discount * 100)}% off)
+                </p>
+              )}
             </div>
 
             {/* Summary Lines */}
@@ -167,13 +218,13 @@ export function Cart({
             </div>
 
             {/* Checkout Button - no action */}
-            <button className="w-full bg-emerald-600 text-white font-semibold py-3 px-4 rounded-lg hover:bg-emerald-700 transition-colors">
+            <button className="w-full bg-emerald-600 text-white font-semibold py-3 px-4 rounded-lg hover:bg-emerald-700 transition-colors cursor-pointer">
               Proceed to Checkout
             </button>
 
             {/* Continue Shopping Link - no action */}
             <button
-              className="w-full mt-3 border border-emerald-300 text-emerald-700 font-medium py-2 px-4 rounded-lg hover:bg-emerald-50 transition-colors"
+              className="w-full mt-3 border border-emerald-300 text-emerald-700 font-medium py-2 px-4 rounded-lg hover:bg-emerald-50 transition-colors cursor-pointer"
               onClick={onContinueShopping}
             >
               Continue Shopping

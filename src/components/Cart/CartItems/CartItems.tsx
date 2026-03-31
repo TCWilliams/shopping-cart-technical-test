@@ -53,7 +53,7 @@ export function CartItems({ items }: { items: CartItemType[] }) {
           <div className="col-span-2 text-right">
             <button
               onClick={() => handleRemove(item.productId)}
-              className="text-red-600 hover:text-red-800 font-medium text-sm transition-colors"
+              className="text-red-600 hover:text-red-800 font-medium text-sm transition-colors cursor-pointer"
             >
               Remove
             </button>

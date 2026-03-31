@@ -3,7 +3,7 @@ import { cartReducer } from './cartReducer'
 import { CartContext } from './cartContext'
 import type { CartState } from '@/types'
 
-const STORAGE_KEY = 'farmlands_cart'
+const STORAGE_KEY = 'greenMeadows-store'
 
 const initialState: CartState = {
   cart: { items: [] },

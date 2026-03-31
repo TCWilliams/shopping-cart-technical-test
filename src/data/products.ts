@@ -56,6 +56,6 @@ export async function getProducts(): Promise<Product[]> {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(products)
-    }, 500)
+    }, 300) // Simulate 300ms network delay
   })
 }

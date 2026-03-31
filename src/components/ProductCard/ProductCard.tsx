@@ -67,7 +67,7 @@ export function ProductCard({
             className={`px-4 py-2 rounded-lg font-medium transition-all whitespace-nowrap ${
               product.stockCount === 0 || inCart >= product.stockCount
                 ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
-                : 'bg-green-700 text-white hover:bg-green-700 active:scale-90 shadow-md'
+                : 'bg-green-700 text-white hover:bg-green-700 active:scale-90 shadow-md cursor-pointer'
             }`}
           >
             Add to Cart
